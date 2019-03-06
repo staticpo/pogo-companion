@@ -24,15 +24,15 @@ class MainButtons extends Component {
   render() {
     return (
       <View style={styles.MainButtonsContainer}>
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
-        <SearchButton style={styles.MainButton} />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
+        <SearchButton />
       </View>
     );
   }

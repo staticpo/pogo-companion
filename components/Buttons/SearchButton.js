@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import { View, Image, StyleSheet } from 'react-native';
+import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { withNavigation } from 'react-navigation';
 
 const styles = StyleSheet.create({
   MainButton: {
@@ -18,13 +19,17 @@ const styles = StyleSheet.create({
 
 // eslint-disable-next-line react/prefer-stateless-function
 class SearchButton extends Component {
+  searchButtonHandler() {
+    this.props.navigation.navigate('Credits');
+  }
+
   render() {
     return (
-      <View style={styles.MainButton}>
+      <TouchableOpacity style={styles.MainButton} onPress={this.searchButtonHandler.bind(this)}>
         <Image style={styles.Image} source={require('../../assets/search.png')} />
-      </View>
+      </TouchableOpacity>
     );
   }
 }
 
-export default SearchButton;
+export default withNavigation(SearchButton);

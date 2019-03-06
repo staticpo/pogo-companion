@@ -1,6 +1,8 @@
 import React from 'react';
 import { StyleSheet, View, ScrollView } from 'react-native';
+import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './components/Home';
+import Credits from './components/Credits';
 import Footer from './components/Footer';
 
 const styles = StyleSheet.create({
@@ -11,14 +13,10 @@ const styles = StyleSheet.create({
   },
 });
 
-
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      dummyvar: 'dummy',
-    };
-  }
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Pogo Companion',
+  };
 
   render() {
     return (
@@ -35,4 +33,39 @@ export default class App extends React.Component {
   }
 }
 
-module.exports = App;
+class CreditsScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Credits',
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <Credits />
+        </ScrollView>
+        <View>
+          <Footer />
+        </View>
+      </View>
+    );
+  }
+}
+
+const AppNavigator = createStackNavigator(
+  {
+    Home: HomeScreen,
+    Credits: CreditsScreen,
+  },
+  {
+    initialRouteName: 'Home',
+  },
+);
+
+const AppContainer = createAppContainer(AppNavigator);
+
+export default class App extends React.Component {
+  render() {
+    return <AppContainer />;
+  }
+}
