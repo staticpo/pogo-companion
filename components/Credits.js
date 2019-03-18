@@ -23,6 +23,8 @@ class Credits extends Component {
               { key: 'Search by fandicon from the Noun Project' },
               { key: 'Pokeball by Nikita Kozin from the Noun Project' },
               { key: 'Binocular by David from the Noun Project' },
+              { key: 'About by Dmitriy Ivanov from the Noun Project' },
+              { key: 'Bug, Dark, Dragon, Electric, Fairy, Fighting, Fire, Flying, Ghost, Grass, Ground, Ice, Normal, Poison, Psychic, Rock, Steel, Water by Ilaria Bernareggi from the Noun Project' },
             ]}
             renderItem={({ item }) => <Text>{item.key}</Text>}
           />

@@ -3,6 +3,7 @@ import { StyleSheet, View, ScrollView } from 'react-native';
 import { createStackNavigator, createAppContainer } from 'react-navigation';
 import Home from './components/Home';
 import Credits from './components/Credits';
+import Search from './components/Search';
 import Footer from './components/Footer';
 
 const styles = StyleSheet.create({
@@ -52,10 +53,30 @@ class CreditsScreen extends React.Component {
   }
 }
 
+class SearchScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Search',
+  };
+
+  render() {
+    return (
+      <View style={styles.container}>
+        <ScrollView>
+          <Search />
+        </ScrollView>
+        <View>
+          <Footer />
+        </View>
+      </View>
+    );
+  }
+}
+
 const AppNavigator = createStackNavigator(
   {
     Home: HomeScreen,
     Credits: CreditsScreen,
+    Search: SearchScreen,
   },
   {
     initialRouteName: 'Home',

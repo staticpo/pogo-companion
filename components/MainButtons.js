@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { View, StyleSheet } from 'react-native';
-import SearchButton from './Buttons/SearchButton';
+import GridButton from './Buttons/GridButton';
 
 const styles = StyleSheet.create({
   MainButtonsContainer: {
@@ -24,15 +24,9 @@ class MainButtons extends Component {
   render() {
     return (
       <View style={styles.MainButtonsContainer}>
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
-        <SearchButton />
+        <GridButton page="Search" />
+        <GridButton page="Tasks" />
+        <GridButton page="Credits" />
       </View>
     );
   }

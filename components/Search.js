@@ -2,18 +2,20 @@ import React, { Component } from 'react';
 import { Button, Text, View } from 'react-native';
 import axios from 'axios';
 
-class SearchField extends Component {
+class Search extends Component {
   constructor() {
     super();
     this.state = {
       pokemon: '',
     };
+
+    this.searchHandler = this.searchHandler.bind(this);
   }
 
   searchHandler() {
     axios.get('https://pokeapi.co/api/v2/pokemon/1')
       .then((response) => {
-        console.log(response.data.name);
+        console.log(response.data);
         return response;
       })
       .then(response => this.setState({ pokemon: response.data.name }));
@@ -30,4 +32,4 @@ class SearchField extends Component {
   }
 }
 
-export default SearchField;
+export default Search;
