@@ -1,32 +1,71 @@
 import React, { Component } from 'react';
-import { Button, Text, View } from 'react-native';
+import {
+  Button, Text, View, TextInput,
+} from 'react-native';
 import axios from 'axios';
+import InfoPage from './infoPage';
 
 class Search extends Component {
   constructor() {
     super();
     this.state = {
-      pokemon: '',
+      searchTerm: '',
+      pokemonName: '',
+      pokemon: {
+        name: '',
+        types: [],
+        imageURL: '',
+      },
     };
 
+    this.input = React.createRef();
     this.searchHandler = this.searchHandler.bind(this);
   }
 
   searchHandler() {
-    axios.get('https://pokeapi.co/api/v2/pokemon/1')
+    const { searchTerm } = this.state;
+    console.log(searchTerm);
+
+    const url = `https://pokeapi.co/api/v2/pokemon/${searchTerm}`;
+
+    axios.get(url)
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         return response;
       })
-      .then(response => this.setState({ pokemon: response.data.name }));
+      .then((response) => {
+        this.setState({ pokemonName: response.data.name });
+        return response;
+      })
+      .then((response) => {
+        const poketypes = [];
+        response.data.types.forEach((element) => {
+          poketypes.push(element.type.name);
+        });
+
+        this.setState({
+          pokemon: {
+            name: response.data.name,
+            imageURL: response.data.sprites.front_default,
+            types: poketypes,
+          },
+        });
+      });
   }
 
   render() {
-    const { pokemon } = this.state;
+    const { pokemonName, pokemon } = this.state;
     return (
       <View>
-        <Text>{ pokemon }</Text>
-        <Button title="This is the title" className="button" onClick={this.searchHandler} onPress={this.searchHandler} />
+        <Text>{ pokemonName }</Text>
+        <TextInput
+          style={{ height: 40, borderColor: 'gray', borderWidth: 1 }}
+          onChangeText={text => this.setState({ searchTerm: text })}
+          ref={this.input}
+        />
+        <Button title="Search" className="button" onClick={this.searchHandler} onPress={this.searchHandler} />
+
+        { pokemon.name !== '' ? <InfoPage pokemon={pokemon} /> : null }
       </View>
     );
   }
